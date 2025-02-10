@@ -1,6 +1,6 @@
 # README
 
-## Overview
+## Remark
 
 This project uses a C++ executable `Multi_thread_extract_unique_graphs.out` for graph isomorphism in the `identify_features.py` script. We have implemented this code ourselves.
 
