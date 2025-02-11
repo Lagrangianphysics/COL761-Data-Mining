@@ -47,35 +47,42 @@ import retworkx as rx
 
 class GraphData:
     def __init__(self, graph_id):
-        self.graph = rx.PyGraph()
+        self.graph = rx.PyGraph(multigraph=False)
         self.graph_id = graph_id
         self.node_map = {}  # Maps node_id to retworkx internal index
         self.edge_labels = {}  # Maps (u, v) -> label
 
     def add_node(self, node_id, label=None):
         """Adds a node with an optional label."""
-        index = self.graph.add_node({"label": label})  # Store as dict
-        self.node_map[node_id] = index  # Store mapping
+        index = self.graph.add_node(node_id)  # Store as dict
+        self.node_map[node_id] = label  # Store mapping
 
     def add_edge(self, node1, node2, label=None):
-        """Adds an edge with an optional label."""
-        if node1 in self.node_map and node2 in self.node_map:
-            u, v = self.node_map[node1], self.node_map[node2]
-            self.graph.add_edge(u, v, label)  # Store label directly
-            self.edge_labels[(u, v)] = label
+        if (node1<node2):
+            node1,node2=node2,node1
+        self.graph.add_edge(node1, node2, label)  
+        self.graph.add_edge(node2, node1, label) 
+        self.edge_labels[(node1, node2)] = label
+        self.edge_labels[(node2, node1)] = label
 
     def append_to_file_normal(self, filename):
 
         with open(filename, "a") as f:
             f.write("#\n")
             
-            for node_id, index in self.node_map.items():
-                label = self.graph[index]["label"] if self.graph[index] else ""
+            for node_id in self.graph.nodes():
+                label = self.node_map[node_id]
+                # label = self.graph[index]["label"] if self.graph[index] else ""
                 f.write(f"v {node_id} {label}\n")
 
-            for (node1, node2), label in self.edge_labels.items():
-                label = label if label is not None else ""
+            # for (node1, node2), label in self.edge_labels.items():
+            #     label = label if label is not None else ""
+            #     f.write(f"e {node1} {node2} {label}\n")
+            
+            for node1, node2 in self.graph.edge_list():
+                label = self.edge_labels[(node1, node2)]
                 f.write(f"e {node1} {node2} {label}\n")
+                    # label = label if label is not None else ""
 
     def append_to_file_gaston(self, filename):
         
@@ -83,13 +90,22 @@ class GraphData:
 
             f.write(f"t # {self.graph_id}\n")
 
-            for node_id, index in self.node_map.items():
-                label = self.graph[index]["label"] if self.graph[index] else ""
+            for node_id in self.graph.nodes():
+                # print(node_id)
+                label = self.node_map[node_id]
+                # label = self.graph[index]["label"] if self.graph[index] else ""
                 f.write(f"v {node_id} {label}\n")
 
-            for (node1, node2), label in self.edge_labels.items():
-                label = label if label is not None else ""
+            # for (node1, node2), label in self.edge_labels.items():
+            #     label = label if label is not None else ""
+            #     f.write(f"e {node1} {node2} {label}\n")
+            
+            # print(self.graph.edge_list())
+
+            for node1, node2 in self.graph.edge_list():
+                label = self.edge_labels[(node1, node2)]
                 f.write(f"e {node1} {node2} {label}\n")
+                    # label = label if label is not None else ""
 
 
 def read_normal_graphs_from_file(file_name , idx = 0):
@@ -151,15 +167,20 @@ def read_freq_graphs_from_file(file_name , idx = 0):
             E = int(E)
             L = int(L)
             graph_data[-1].add_edge(S,E,L)
+            # if (S<E):
         
 
     sys.stdin = sys.__stdin__
     return graph_data
 
 
-
-
-
+def edge_matcher_helper(e1,e2) :
+    # print(f"Comparing edges: {e1} vs {e2}")
+    if (e1 == e2):
+        print(e1,e2,e1==e2)
+    else:
+        print(e1,e2,e1==e2)
+    return (e1==e2)
 
 
 
