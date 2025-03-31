@@ -16,7 +16,7 @@ RANDOM_INSTANCES=$4
 SRC_DIR="./src"
 BIN_DIR="$SRC_DIR/bin"
 
-# Compile main.cpp using g++ with C++17 standard and save the executable in src/bin
+# Compile main.cpp using g++ with C++11 standard and save the executable in src/bin
 g++ -std=c++11 -O2 -fopenmp "$SRC_DIR/main.cpp" -o "$BIN_DIR/main" || { echo "Error: Compilation failed."; exit 1; }
 
 # Run the compiled executable with the provided parameters
