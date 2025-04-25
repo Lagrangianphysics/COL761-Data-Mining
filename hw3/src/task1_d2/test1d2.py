@@ -81,7 +81,7 @@ def inference_on_unseen_users(test_graph_path, model_path, out_file_path):
 
 
     input_dim  = x.shape[1]
-    output_dim = 5
+    output_dim = 18
     epochs     = 1000
     patience   = 100
 
