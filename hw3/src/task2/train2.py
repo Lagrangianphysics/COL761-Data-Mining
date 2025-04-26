@@ -222,12 +222,10 @@ def get_model(train_graph_path , out_model_path):
                 true  = Y[val_idx].cpu().numpy().reshape(-1)
                 val_f1 = f1_score(true, preds, average='weighted')
 
-            print(
-                f"Epoch {epoch:03d} | "
+            print(f"Epoch {epoch:03d} | "
                 f"Train Loss: {loss.item():.4f} | "
                 f"Val Loss: {val_loss:.4f} | "
-                f"Val F1: {val_f1:.4f}"
-            )
+                f"Val F1: {val_f1:.4f}")
 
             if val_f1 > best_f1:
                 best_f1 = val_f1
