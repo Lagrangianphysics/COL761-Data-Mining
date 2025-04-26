@@ -185,7 +185,7 @@ def inference_on_unseen_users(test_graph_path, model_path, out_file_path):
                     num_layers=3,
                     dropout=0.3).to(device)
     model.load_state_dict(state_dict)
-    
+     
     print(f"Inference...")
    # -------------------- Inference & Save --------------------
     model.eval()
@@ -194,7 +194,9 @@ def inference_on_unseen_users(test_graph_path, model_path, out_file_path):
             model(X_u, X_p, users_idx, prods_idx, norm)
         ).cpu().numpy()
 
-    np.savetxt(out_file_path, final_probs, fmt='%.6f', delimiter=',')
+    final_preds = (final_probs >= 0.5).astype(int)
+
+    np.savetxt(out_file_path, final_preds, fmt='%d', delimiter=',')
     print("Saved predictions. Inference time: {:.1f}s".format(time.time()-start))
 
 
