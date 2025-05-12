@@ -109,8 +109,3 @@ COL761-Data-Mining/
 - [HW3 Problem Statement (hw3.pdf)](hw3.pdf)
 
 For any implementation-specific or dataset-related queries, refer to the assignment PDFs in their respective directories.
-
----
-
-**Note:**  
-This README summarizes the assignments and their requirements. Please refer to the respective PDF files in each assignment directory for full problem statements, dataset links, and detailed instructions[3][1][2].
