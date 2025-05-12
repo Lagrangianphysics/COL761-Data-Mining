@@ -102,17 +102,6 @@ COL761-Data-Mining/
 
 ---
 
-## Submission & Evaluation Guidelines
-
-- **One submission per team.**
-- Add `https://github.com/2023col761` as a collaborator.
-- Follow the exact directory and file naming conventions as specified in each assignment PDF.
-- Do **not** submit data files.
-- Reports must cite all sources and describe team contributions.
-- Evaluation for HW1 and HW3 includes both correctness and competitive performance; HW2 is competitive for Task 4.
-
----
-
 ## References
 
 - [HW1 Problem Statement (hw1.pdf)](hw1.pdf)
