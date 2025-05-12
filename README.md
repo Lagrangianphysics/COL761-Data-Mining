@@ -11,7 +11,6 @@ This repository contains solutions to the assignments for the COL761 Data Mining
 - [HW2: Influence Maximization in Social Networks](#hw2-influence-maximization-in-social-networks)
 - [HW3: Graph Neural Networks for Bipartite Graphs](#hw3-graph-neural-networks-for-bipartite-graphs)
 - [Directory Structure](#directory-structure)
-- [Submission & Evaluation Guidelines](#submission--evaluation-guidelines)
 - [References](#references)
 
 ---
